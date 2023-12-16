@@ -1,0 +1,7 @@
+TTS
+torch
+torchaudio
+faster_whisper==0.9.0
+gradio==4.7.1
+datasets
+pydub
