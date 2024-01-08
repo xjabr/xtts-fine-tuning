@@ -5,3 +5,4 @@ faster_whisper==0.9.0
 gradio==4.7.1
 datasets
 pydub
+whisper_timestamped @ git+https://github.com/linto-ai/whisper-timestamped

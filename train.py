@@ -19,17 +19,17 @@ OUT_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "run", "trai
 # Training Parameters
 OPTIMIZER_WD_ONLY_ON_WEIGHTS = True  # for multi-gpu training please make it False
 START_WITH_EVAL = True  # if True it will star with evaluation
-BATCH_SIZE = 3  # set here the batch size
+BATCH_SIZE = 2  # set here the batch size
 GRAD_ACUMM_STEPS = 84  # set here the grad accumulation steps
 # Note: we recommend that BATCH_SIZE * GRAD_ACUMM_STEPS need to be at least 252 for more efficient training. You can increase/decrease BATCH_SIZE but then set GRAD_ACUMM_STEPS accordingly.
 
 # Define here the dataset that you want to use for the fine-tuning on.
 config_dataset = BaseDatasetConfig(
     formatter="ljspeech",
-    dataset_name="british_south",
-    path="data/british_south/",
+    dataset_name="stephen-fry",
+    path="data/stephen-fry/",
     meta_file_train="metadata.csv",
-    language="en",
+    language="en"
 )
 
 # Add here the configs of the datasets
@@ -72,7 +72,7 @@ if not os.path.isfile(TOKENIZER_FILE) or not os.path.isfile(XTTS_CHECKPOINT):
 
 # Training sentences generations
 SPEAKER_REFERENCE = [
-    "./datasets/LJSpeech-1.1/wavs/LJ001-0002.wav"  # speaker reference to be used in training test sentences
+    "./data/stephen-fry/wavs/AUDIO_WAV_0.0_5.84.wav"  # speaker reference to be used in training test sentences
 ]
 LANGUAGE = config_dataset.language
 
@@ -114,7 +114,7 @@ def main():
         eval_batch_size=BATCH_SIZE,
         num_loader_workers=8,
         eval_split_max_size=256,
-        print_step=50,
+        print_step=1,
         plot_step=100,
         log_model_step=1000,
         save_step=10000,
